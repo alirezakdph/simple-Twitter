@@ -48,6 +48,7 @@ public class App {
                     if (Login.isLogin()){
                         User.like();
                         break;
+                        
                     }
                 case "b":
                     for (int i = 0; i < Twitter.getUsers().size(); i++) {
