@@ -9,7 +9,7 @@ public class App {
         while (true){
             String command = in.nextLine();
             command = command.toLowerCase();
-            switch (command){
+            switch (command.trim()){
                 case "quit":
                     exit(0);
                     break;
@@ -57,6 +57,11 @@ public class App {
                 case "my profile":
                     if (Login.isLogin()){
                         Twitter.getUsers().get(Login.userNum).myProfile();
+                        break;
+                    }
+                case "profile":
+                    if (Login.isLogin()){
+                        Profile.profile();
                         break;
                     }
                 case "b":
