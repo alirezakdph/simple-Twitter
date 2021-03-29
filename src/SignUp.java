@@ -22,7 +22,7 @@ public class SignUp{
         Scanner in = new Scanner(System.in);
         for (int i = 0; i < Twitter.getUsers().size(); i++) {
             if (Twitter.getUsers().get(i).getUserName().equals(userName.trim())){
-
+                System.out.println("That username is taken. Try another.");
                 userName = in.next();
                 userName = checkUserName(userName);
                 return userName;

@@ -46,9 +46,18 @@ public class App {
                     }
                 case "like":
                     if (Login.isLogin()){
-                        User.like();
+                        Twitter.getUsers().get(Login.userNum).like();
                         break;
-                        
+                    }
+                case "tweet":
+                    if (Login.isLogin()){
+                        Twitter.getUsers().get(Login.userNum).tweet();
+                        break;
+                    }
+                case "my profile":
+                    if (Login.isLogin()){
+                        Twitter.getUsers().get(Login.userNum).myProfile();
+                        break;
                     }
                 case "b":
                     for (int i = 0; i < Twitter.getUsers().size(); i++) {

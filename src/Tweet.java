@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tweet {
     private String tweet;
@@ -9,6 +11,8 @@ public class Tweet {
     LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyDDDhhmmss");
     long ID =Long.parseLong(now.format(format) + String.valueOf(userNum));
+    List<Integer> likes = new ArrayList<>();
+
     public String getTweet() {
         return tweet;
     }
@@ -25,12 +29,19 @@ public class Tweet {
         return ID;
     }
 
+    public String displayWithUserName() {
+        return Twitter.getUsers().get(userNum).getUserName() + '\n' +
+               "Tweet ID : " + ID + "                   like= " + like + '\n' +
+               tweet + "\n\n" +
+               "----------------------------------------------------------------------------------------------------\n"
+                ;
+    }
+
     @Override
     public String toString() {
-        return Twitter.getUsers().get(userNum).getUserName() + '\n' +
-                "Tweet ID : '" + ID + "                   like= " + like + "\n\n" +
-                tweet +
-                "----------------------------------------------------------------------------------------------------"
-                ;
+        return "Tweet ID : " + ID + "                   like= " + like + '\n' +
+               tweet + "\n\n" +
+               "----------------------------------------------------------------------------------------------------\n"
+               ;
     }
 }

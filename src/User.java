@@ -108,18 +108,31 @@ public class User {
         setTweet(tweetText);
     }
 
-    public static void like(){
+    public void like(){
         System.out.println("Please enter the tweet ID you want to like.");
         String ID = String.valueOf(in.nextLong());
-        int tweeterNum = Integer.parseInt(ID.substring(12));
+        int tweeterNum = Integer.parseInt(ID.substring(11));
         for (int i = 0; i < Twitter.getUsers().get(tweeterNum).getTweets().size(); i++) {
             if (Twitter.getUsers().get(tweeterNum).getTweets().get(i).getID() == Long.parseLong(ID)){
+                for (int j : Twitter.getUsers().get(tweeterNum).getTweets().get(i).likes) {
+                    if (j == userNum) {
+                        return;
+                    }
+                }
                 Twitter.getUsers().get(tweeterNum).getTweets().get(i).like ++;
+                Twitter.getUsers().get(tweeterNum).getTweets().get(i).likes.add(userNum);
                 System.out.println("Tweet liked successfully");
                 return;
             }
         }
         System.out.println("Tweet(" + ID + ") not found!!!");
+    }
+
+    public void myProfile(){
+        System.out.println(userName);
+        for (Tweet tweet : tweets){
+            System.out.println(tweet);
+        }
     }
     @Override
     public String toString() {
