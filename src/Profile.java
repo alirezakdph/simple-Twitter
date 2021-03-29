@@ -11,6 +11,7 @@ public class Profile {
                 for (Tweet tweet : Twitter.getUsers().get(i).tweets){
                     System.out.println(tweet);
                 }
+                return;
             }
         }
         System.out.println(userName.trim() + " not found!!!");
