@@ -108,6 +108,19 @@ public class User {
         setTweet(tweetText);
     }
 
+    public static void like(){
+        System.out.println("Please enter the tweet ID you want to like.");
+        String ID = String.valueOf(in.nextLong());
+        int tweeterNum = Integer.parseInt(ID.substring(12));
+        for (int i = 0; i < Twitter.getUsers().get(tweeterNum).getTweets().size(); i++) {
+            if (Twitter.getUsers().get(tweeterNum).getTweets().get(i).getID() == Long.parseLong(ID)){
+                Twitter.getUsers().get(tweeterNum).getTweets().get(i).like ++;
+                System.out.println("Tweet liked successfully");
+                return;
+            }
+        }
+        System.out.println("Tweet(" + ID + ") not found!!!");
+    }
     @Override
     public String toString() {
         return "User{" +

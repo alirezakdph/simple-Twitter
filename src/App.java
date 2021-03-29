@@ -44,6 +44,11 @@ public class App {
                         Twitter.getUsers().get(Login.userNum).printFollowing();
                         break;
                     }
+                case "like":
+                    if (Login.isLogin()){
+                        User.like();
+                        break;
+                    }
                 case "b":
                     for (int i = 0; i < Twitter.getUsers().size(); i++) {
                         System.out.println(Twitter.getUsers().get(i));

@@ -20,4 +20,17 @@ public class Tweet {
     public void setUserNum(int userNum) {
         this.userNum = userNum;
     }
+
+    public long getID() {
+        return ID;
+    }
+
+    @Override
+    public String toString() {
+        return Twitter.getUsers().get(userNum).getUserName() + '\n' +
+                "Tweet ID : '" + ID + "                   like= " + like + "\n\n" +
+                tweet +
+                "----------------------------------------------------------------------------------------------------"
+                ;
+    }
 }
