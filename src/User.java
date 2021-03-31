@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.SWAP;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -106,6 +108,7 @@ public class User {
         System.out.println("Please enter the text of the tweet.(Less than 140 letters)");
         String tweetText = in.nextLine();
         setTweet(tweetText);
+        System.out.println("Tweeted successfully");
     }
 
     public void like(){
@@ -134,10 +137,51 @@ public class User {
             System.out.println(tweet);
         }
     }
+
+    public void timeLine() {
+        List<Tweet> allTweets = new ArrayList<>();
+        allTweets.addAll(tweets);
+        for (int i = 0; i < following.size(); i++) {
+            for (int j = 0; j < Twitter.getUsers().size(); j++) {
+                if (following.get(i) == Twitter.getUsers().get(j).getUserNum()) {
+                    allTweets.addAll(Twitter.getUsers().get(j).getTweets());
+                }
+            }
+        }
+        Tweet[] allTweetsArr = new Tweet[allTweets.size()];
+        for (int i = 0; i < allTweets.size(); i++) {
+            allTweetsArr[i] = new Tweet();
+        }
+        for (int i = 0; i < allTweetsArr.length; i++) {
+            allTweetsArr[i] = allTweets.get(i);
+        }
+        Tweet temp = new Tweet();
+        for (int i = 0; i < allTweetsArr.length; i++) {
+            for (int j = i + 1; j < allTweetsArr.length; j++) {
+                if (allTweetsArr[i].toSort < allTweetsArr[j].toSort){
+                    temp = allTweetsArr[i];
+                    allTweetsArr[i] = allTweetsArr[j];
+                    allTweetsArr[j] = temp;
+                }
+            }
+        }
+        for (Tweet tweet : allTweetsArr){
+            System.out.println(tweet.displayWithUserName());
+        }
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "userName='" + userName + '\'' +
-                '}';
+        return userName;
     }
 }
+//    Tweet temp = new Tweet();
+//        for (int i = 0; i < allTweetsArr.length; i++) {
+//        for (int j = i + 1; j < allTweetsArr.length; j++) {
+//        if (allTweetsArr[i].toSort < allTweetsArr[j].toSort){
+//        temp.equals(allTweetsArr[i]);
+//        allTweetsArr[i].equals(allTweetsArr[j]);
+//        allTweetsArr[j].equals(temp);
+//        }
+//        }
+//        }

@@ -14,11 +14,15 @@ public class App {
                     exit(0);
                     break;
                 case "sign up":
-                    SignUp.addUser();
-                    break;
+                    if (!Login.isLogin()) {
+                        SignUp.addUser();
+                        break;
+                    }
                 case "login":
-                    Login.login();
-                    break;
+                    if (!Login.isLogin()) {
+                        Login.login();
+                        break;
+                    }
                 case "logout":
                     if (Login.isLogin()){
                         Logout.logout();
@@ -64,6 +68,11 @@ public class App {
                         Profile.profile();
                         break;
                     }
+                case "timeline":
+                    if (Login.isLogin()){
+                        Twitter.getUsers().get(Login.userNum).timeLine();
+                        break;
+                    }
                 case "b":
                     for (int i = 0; i < Twitter.getUsers().size(); i++) {
                         System.out.println(Twitter.getUsers().get(i));
@@ -72,6 +81,4 @@ public class App {
             }
         }
     }
-
-
 }

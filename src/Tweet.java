@@ -11,6 +11,7 @@ public class Tweet {
     LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyDDDhhmmss");
     long ID =Long.parseLong(now.format(format) + String.valueOf(userNum));
+    long toSort = Long.parseLong(now.format(format));
     List<Integer> likes = new ArrayList<>();
 
     public String getTweet() {
@@ -29,9 +30,25 @@ public class Tweet {
         return ID;
     }
 
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
+    public void setToSort(long toSort) {
+        this.toSort = toSort;
+    }
+
+    public void setLikes(List<Integer> likes) {
+        this.likes.addAll(likes);
+    }
+
     public String displayWithUserName() {
         return Twitter.getUsers().get(userNum).getUserName() + '\n' +
-               "Tweet ID : " + ID + "                   like= " + like + '\n' +
+               "Tweet ID : " + ID + "                   like = " + like + '\n' +
                tweet + "\n\n" +
                "----------------------------------------------------------------------------------------------------\n"
                 ;
@@ -39,9 +56,18 @@ public class Tweet {
 
     @Override
     public String toString() {
-        return "Tweet ID : " + ID + "                   like= " + like + '\n' +
+        return "Tweet ID : " + ID + "                   like = " + like + '\n' +
                tweet + "\n\n" +
                "----------------------------------------------------------------------------------------------------\n"
                ;
+    }
+
+    public void equals(Tweet tweet) {
+        tweet.setTweet(this.tweet);
+        tweet.setUserNum(this.userNum);
+        tweet.setID(this.ID);
+        tweet.setLike(this.like);
+        tweet.setToSort(this.toSort);
+        tweet.setLikes(this.likes);
     }
 }
