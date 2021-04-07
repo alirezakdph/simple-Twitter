@@ -5,8 +5,10 @@ import static java.lang.System.exit;
 public class App {
 
     public static void main(String[] args) {
+        System.out.println("Welcome to my Twitter :)");
         Scanner in = new Scanner(System.in);
         while (true){
+            System.out.println("Enter command : ");
             String command = in.nextLine();
             command = command.toLowerCase();
             switch (command.trim()){
@@ -78,6 +80,8 @@ public class App {
                         System.out.println(Twitter.getUsers().get(i));
                     }
                     break;
+                default:
+                    System.out.println("Invalid command !!!");
             }
         }
     }

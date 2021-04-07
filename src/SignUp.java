@@ -8,13 +8,16 @@ public class SignUp{
         String userName = in.next();
         userName = checkUserName(userName);
         System.out.println("Please enter your Password \n" +
-                           "(Use 8 characters or more, a combination of letters,numbers and symbols) :");
+                "(Use 8 characters or more, a combination of letters,numbers and symbols) :");
         String password = in.next();
         password = checkStrongPass(password);
+        System.out.println("Please confirm your Password : ");
+        String confirmPassword = in.next();
+        password = samePass(password, confirmPassword);
         User newUser = new User(userName, password);
         newUser.setUserNum(Twitter.getUsers().size());
         Twitter.setUser(newUser);
-        System.out.println("Your account was created successfully");
+        System.out.println("Your account was created successfully.");
 
     }
 
@@ -58,4 +61,20 @@ public class SignUp{
         }
         return password;
     }
+    private static String samePass(String password, String confirmPassword) {
+        Scanner in = new Scanner(System.in);
+        if (!password.equals(confirmPassword)){
+            System.out.println("Those passwords didn’t match. Try again.");
+            System.out.println("Please enter your Password \n" +
+                    "(Use 8 characters or more, a combination of letters,numbers and symbols) :");
+            password = in.next();
+            password = checkStrongPass(password);
+            System.out.println("Please confirm your Password : ");
+            confirmPassword = in.next();
+            password = samePass(password, confirmPassword);
+            return password;
+        }
+        return password;
+    }
 }
+
