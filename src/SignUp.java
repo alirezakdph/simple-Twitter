@@ -7,12 +7,15 @@ public class SignUp{
         System.out.println("Please enter your user name :");
         String userName = in.next();
         userName = checkUserName(userName);
+        if (userName.equals("cancel")) return;
         System.out.println("Please enter your Password \n" +
                 "(Use 8 characters or more, a combination of letters,numbers and symbols) :");
         String password = in.next();
         password = checkStrongPass(password);
+        if (password.equals("cancel")) return;
         System.out.println("Please confirm your Password : ");
         String confirmPassword = in.next();
+        if (password.equals("cancel")) return;
         password = samePass(password, confirmPassword);
         User newUser = new User(userName, password);
         newUser.setUserNum(Twitter.getUsers().size());
@@ -22,6 +25,9 @@ public class SignUp{
     }
 
     private static String checkUserName(String userName){
+        if (userName.equals("cancel")){
+            return userName;
+        }
         Scanner in = new Scanner(System.in);
         for (int i = 0; i < Twitter.getUsers().size(); i++) {
             if (Twitter.getUsers().get(i).getUserName().equals(userName.trim())){
@@ -35,6 +41,9 @@ public class SignUp{
     }
 
     private static String checkStrongPass(String password) {
+        if (password.equals("cancel")){
+            return password;
+        }
         Scanner in = new Scanner(System.in);
         if (password.length() < 8) {
             System.out.println("Use 8 characters or more for your password !!! :");
@@ -62,6 +71,9 @@ public class SignUp{
         return password;
     }
     private static String samePass(String password, String confirmPassword) {
+        if (confirmPassword.equals("cancel")){
+            return confirmPassword;
+        }
         Scanner in = new Scanner(System.in);
         if (!password.equals(confirmPassword)){
             System.out.println("Those passwords didn’t match. Try again.");

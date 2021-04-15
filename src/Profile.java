@@ -5,6 +5,7 @@ public class Profile {
     public static void profile(){
         System.out.println("Please enter a username : ");
         String  userName = in.next();
+        if (userName.equals("cancel")) return;
         for (int i = 0; i < Twitter.getUsers().size(); i++) {
             if (Twitter.getUsers().get(i).getUserName().equals(userName.trim())) {
                 System.out.println(userName.trim());

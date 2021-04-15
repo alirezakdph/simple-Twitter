@@ -75,11 +75,6 @@ public class App {
                         Twitter.getUsers().get(Login.userNum).timeLine();
                         break;
                     }
-                case "b":
-                    for (int i = 0; i < Twitter.getUsers().size(); i++) {
-                        System.out.println(Twitter.getUsers().get(i));
-                    }
-                    break;
                 default:
                     System.out.println("Invalid command !!!");
             }

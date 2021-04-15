@@ -58,8 +58,10 @@ public class User {
     public void follow() {
         System.out.println("Enter the username you want to follow : ");
         String target = in.next();
+        if (target.equals("cancel")) return;
         while (target.equals(userName)){
             System.out.println("You can not follow yourself!!! \nEnter the username you want to follow : ");
+            if (target.equals("cancel")) return;
             target = in.next();
         }
         for (int i = 0; i < Twitter.getUsers().size(); i++) {
@@ -73,11 +75,13 @@ public class User {
         System.out.println(target + " not found!!!");
     }
     public void unfollow() {
-        System.out.println("Enter the username you want to unfollow");
+        System.out.println("Enter the username you want to unfollow :");
         String target = in.next();
+        if (target.equals("cancel")) return;
         while (target.equals(userName)){
             System.out.println("You can not unfollow yourself!!! \nEnter the username you want to unfollow : ");
             target = in.next();
+            if (target.equals("cancel")) return;
         }
         for (int i = 0; i < Twitter.getUsers().size(); i++) {
             if (Twitter.getUsers().get(i).getUserName().equals(target.trim())) {
@@ -107,14 +111,25 @@ public class User {
     public void tweet(){
         System.out.println("Please enter the text of the tweet.(Less than 140 letters)");
         String tweetText = in.nextLine();
+        if (tweetText.equals("cancel")) return;
         setTweet(tweetText);
         System.out.println("Tweeted successfully");
     }
 
     public void like(){
         System.out.println("Please enter the tweet ID you want to like.");
-        String ID = String.valueOf(in.nextLong());
-        int tweeterNum = Integer.parseInt(ID.substring(11));
+        String ID = in.next();
+        if (ID.equals("cancel")) return;
+        while (ID.length() < 12){
+            System.out.println("Wrong ID !!!");
+            System.out.println("Please enter the tweet ID you want to like.");
+            ID = in.next();
+            if (ID.equals("cancel")) return;
+        }
+        int tweeterNum = 0;
+        try {
+            tweeterNum = Integer.parseInt(ID.substring(11));
+        } catch (Exception ex){}
         for (int i = 0; i < Twitter.getUsers().get(tweeterNum).getTweets().size(); i++) {
             if (Twitter.getUsers().get(tweeterNum).getTweets().get(i).getID() == Long.parseLong(ID)){
                 for (int j : Twitter.getUsers().get(tweeterNum).getTweets().get(i).likes) {

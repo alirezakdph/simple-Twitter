@@ -12,9 +12,11 @@ public class Login {
         isLogin = false;
         System.out.println("Enter a user name :");
         userName = in.next();
+        if (userName.equals("cancel")) return;;
         userNum = searchForUser(userName);
         System.out.println("Enter your password :");
         password = in.next();
+        if (password.equals("cancel")) return;;
         checkPass(password);
     }
 
